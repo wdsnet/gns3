@@ -10,14 +10,13 @@ dnsmasq -i virbr0 -z -h --dhcp-range=192.168.122.10,192.168.122.250,4h
 echo " Starting  SSH daemon ..."
 /usr/sbin/sshd -D -e -f /etc/ssh/sshd_config & 
 cd /home/gns3/.ssh 
-ssh-keygen -b 2048 -t rsa -f id_rsa -P '' -C 'GNS3 ssh key' 
-cp id_rsa.pub authorized_keys
+su - gns3 -c  "cd /home/gns3/.ssh/;ssh-keygen -b 2048 -t rsa -f id_rsa -P '' -C 'GNS3 ssh key';cp id_rsa.pub authorized_keys"
 chmod 700 *;chown gns3:gns3 *
 echo "---------------------------------------------------------------"
 echo " Please use this key bellow for SSH connection: "
-
+echo ""
 echo `cat /home/gns3/.ssh/id_rsa`
-
+echo ""
 echo "---------------------------------------------------------------"
 echo "Starting GNS3 Server  ... "
 gns3server -A --config /etc/gns3_server.conf

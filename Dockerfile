@@ -7,12 +7,14 @@ ADD ./conf/gns3_server.conf /etc/gns3_server.conf
 ADD ./conf/gns3_controller.conf /etc/gns3_controller.conf
 RUN sed -n "s/main/testing/p" /etc/apk/repositories >> /etc/apk/repositories && \
     mkdir /data && \
-    apk add --no-cache dnsmasq cpulimit bash openssh autossh iptables  dynamips gns3-server qemu-img qemu-system-x86_64 ubridge vpcs iouyap wget 
+    apk add --no-cache busybox-extras dnsmasq cpulimit bash openssh autossh iptables  dynamips gns3-server qemu-img qemu-system-x86_64 ubridge vpcs iouyap wget 
 RUN pip3 install idna 
 RUN set -x \
  && mkdir /root/.ssh \
  && chmod 700 /root/.ssh
 ADD ./bin/vpcs /usr/bin/vpcs
+ADD ./conf/motd /etc/motd
+RUN chmod 644 /etc/motd
 RUN chmod 755 /usr/bin/vpcs
 RUN ssh-keygen -f   /etc/ssh/ssh_host_rsa_key     -N '' -t rsa     \
 &&  ssh-keygen -f   /etc/ssh/ssh_host_dsa_key     -N '' -t dsa     \
