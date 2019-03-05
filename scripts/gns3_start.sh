@@ -15,7 +15,7 @@ chmod 700 *;chown gns3:gns3 *
 echo "---------------------------------------------------------------"
 echo " Please use this key bellow for SSH connection: "
 echo ""
-echo `cat /home/gns3/.ssh/id_rsa`
+cat /home/gns3/.ssh/id_rsa
 echo ""
 echo "---------------------------------------------------------------"
 echo "Starting GNS3 Server  ... "
