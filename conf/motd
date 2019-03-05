@@ -2,4 +2,4 @@ Welcome to GNS3 server!
 
 For access devices consoles use:
 
-busybox-extras telnet [IP] [PORT]
+busybox-extras telnet localhost [CONSOLE PORT]
